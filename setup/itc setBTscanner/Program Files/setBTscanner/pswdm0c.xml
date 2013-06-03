@@ -1,0 +1,19 @@
+<PSWDM0C FormatVersion="1.0">
+  <Logging level="none"/>
+  <UserInterface>
+    <Configuration name="PSWDM0C">
+      <FullScreen enabled="N"/>
+    </Configuration>
+  </UserInterface>
+  <Logging level="none"/>
+  <Devices>
+    <Security enabled="Y" strict="N"/>
+    <Device>
+      <DeviceName>RS507 12088000500400   (0023686e70bc)</DeviceName>
+      <DeviceAddress>0023686e70bc</DeviceAddress>
+      <ClassOfDevice>080620</ClassOfDevice>
+    </Device>
+    <DefaultDevice name="RS507 12088000500400   (0023686e70bc)"/>
+    <BtPort>COM6:</BtPort>
+  </Devices>
+</PSWDM0C>

@@ -1,6 +1,6 @@
 ﻿namespace setBTscanner
 {
-    partial class Form1
+    partial class setBTscanner
     {
         /// <summary>
         /// Required designer variable.
@@ -30,18 +30,19 @@
         private void InitializeComponent()
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBTmacAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnConnect
             // 
-            this.button1.Location = new System.Drawing.Point(62, 66);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 36);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnConnect.Location = new System.Drawing.Point(62, 66);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(114, 36);
+            this.btnConnect.TabIndex = 0;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -55,18 +56,28 @@
             this.textBox1.Size = new System.Drawing.Size(239, 147);
             this.textBox1.TabIndex = 1;
             // 
-            // Form1
+            // txtBTmacAddress
+            // 
+            this.txtBTmacAddress.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtBTmacAddress.Location = new System.Drawing.Point(17, 20);
+            this.txtBTmacAddress.MaxLength = 12;
+            this.txtBTmacAddress.Name = "txtBTmacAddress";
+            this.txtBTmacAddress.Size = new System.Drawing.Size(205, 26);
+            this.txtBTmacAddress.TabIndex = 2;
+            // 
+            // setBTscanner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
+            this.Controls.Add(this.txtBTmacAddress);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnConnect);
             this.Menu = this.mainMenu1;
             this.MinimizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "setBTscanner";
+            this.Text = "setBTscanner";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.Form1_Closing);
             this.ResumeLayout(false);
 
@@ -74,8 +85,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBTmacAddress;
     }
 }
 

@@ -9,13 +9,14 @@ using System.Windows.Forms;
 
 namespace setBTscanner
 {
-    public partial class Form1 : Form
+    public partial class setBTscanner : Form
     {
         private EventHandler m_deleInfo;
         const string sKeyWedgeFullName = @"\Windows\KeyWedge.exe";
         const string sKeyWedgeName = "KeyWedge.exe";
-        
-        public Form1()
+        bool bAutoClose = true;
+
+        public setBTscanner()
         {
             InitializeComponent();
             
@@ -24,19 +25,23 @@ namespace setBTscanner
             log = new logging(ref textBox1, m_deleInfo);
 
             log.WriteLog("+++++ START +++++");
+            
         }
 
-        public Form1(string sBT)
+        public setBTscanner(string sBT)
         {
             InitializeComponent();
 
             _sBT = sBT;
+            txtBTmacAddress.Text = _sBT;
 
-            m_deleInfo = new EventHandler(loginfoCallback);
+            m_deleInfo = new EventHandler(loginfoCallback); //calback delegate for log display
 
             log = new logging(ref textBox1, m_deleInfo);
 
             log.WriteLog("+++++ START +++++");
+            bAutoClose = true;
+            button1_Click(this, new EventArgs());
         }
 
         BTdevice btdev;
@@ -45,16 +50,21 @@ namespace setBTscanner
 
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Enabled = false;
+            btnConnect.Enabled = false;
+            if (txtBTmacAddress.Text.Length == 12)
+                _sBT = txtBTmacAddress.Text;
 
             killKeyWedge();
             Cursor.Current = Cursors.WaitCursor;
             Application.DoEvents();
 
             btdev = new BTdevice(ref log);
+#if DEBUG
             if (_sBT.Length != 12)
                 _sBT = "0023686E70BC";
-
+#endif
+            txtBTmacAddress.Text = _sBT;
+            
             log.WriteLog("Using BT MAC: '" + _sBT + "'");
 
             if (btdev.DoAssociation(_sBT))
@@ -68,8 +78,10 @@ namespace setBTscanner
             Cursor.Current = Cursors.Default;
             Application.DoEvents();
             
-            button1.Enabled = true;
+            btnConnect.Enabled = true;
 
+            if (bAutoClose)
+                this.Close();
         }
         /// <summary>
         /// StartupCallback - Interthread delegate.
@@ -79,6 +91,8 @@ namespace setBTscanner
         private void loginfoCallback(object sender, System.EventArgs e)
         {
             textBox1.Text += log.strBuffer + "\r\n";
+            textBox1.Select(textBox1.Text.Length - 1, 0);
+            textBox1.ScrollToCaret();
         }
 
         bool killKeyWedge()

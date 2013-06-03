@@ -19,11 +19,11 @@ namespace setBTscanner
                 {
                     string sBT = args[1];
                     if (sBT.Length == 12)
-                        Application.Run(new Form1(sBT));
+                        Application.Run(new setBTscanner(sBT));
                 }
             }
             else
-                Application.Run(new Form1());
+                Application.Run(new setBTscanner());
         }
     }
 }

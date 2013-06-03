@@ -1,0 +1,79 @@
+;
+; This file was automatically generated using:
+;
+;      WinCE CAB Manager 3, 0, 0, 22
+;      Copyright (c) 2001-2008 OCP Software, Inc.
+;      All Rights Reserved
+;
+; For more information on this product, please visit:
+;
+;      http://www.ocpsoftware.com
+;
+
+[SOURCE FILE]
+Name=setBTscanner.cab
+Path=D:\svn\git\setbtscanner\setup\setBTscanner.cab
+AllowUninstall=TRUE
+
+[Version]
+Signature="$Chicago$"
+CESignature="$Windows CE$"
+Provider="itc"
+
+[CEStrings]
+AppName="setBTscanner"
+
+[CEDevice]
+ProcessorType=0
+VersionMin=0.0
+VersionMax=0.0
+BuildMin=0
+BuildMax=0
+
+[SourceDisksNames]
+1=,Source1,,"Program Files\setBTscanner"
+2=,Source2,,"Windows"
+3=,Source3,,
+
+[SourceDisksFiles]
+"Intermec.Communication.Bluetooth.DeviceUtility.CF3.5.dll"=1
+"pswdm0c.xml"=1
+"setBTscanner.exe"=1
+"KeyWedge.exe"=2
+"Setup.DLL"=3
+
+[CopyFiles1]
+"Intermec.Communication.Bluetooth.DeviceUtility.CF3.5.dll",,,0x00000001
+"pswdm0c.xml",,,0x00000001
+"setBTscanner.exe",,,0x00000001
+
+[CopyFiles2]
+"KeyWedge.exe",,,0x00000001
+
+[CEShortcuts1]
+"setBTscanner.lnk",0,"setBTscanner.exe"
+
+[DestinationDirs]
+CopyFiles1=0,"%CE1%\setBTscanner"
+CopyFiles2=0,"%CE2%"
+CEShortcuts1=0,"%CE4%"
+
+[AddRegistry]
+HKLM,"Software\Intermec\SSKeyWedge","comport",0x00000000,"COM6:"
+HKLM,"Software\Intermec\SSKeyWedge","parity",0x00010001,0
+HKLM,"Software\Intermec\SSKeyWedge","stopbits",0x00010001,0
+HKLM,"Software\Intermec\SSKeyWedge","databits",0x00010001,8
+HKLM,"Software\Intermec\SSKeyWedge","handshake",0x00010001,3
+HKLM,"Software\Intermec\SSKeyWedge","baudrate",0x00010001,57600
+HKLM,"Software\Intermec\SSKeyWedge","BeepAfterRead",0x00010001,1
+HKLM,"Software\Intermec\SSKeyWedge","Preamble",0x00000000,""
+HKLM,"Software\Intermec\SSKeyWedge","Postamble",0x00000000,""
+HKLM,"Software\Intermec\SSKeyWedge","UseCharSend",0x00000000,"0"
+HKLM,"Software\Intermec\SSKeyWedge","sendcharbychar",0x00010001,1
+
+[DefaultInstall]
+CopyFiles=CopyFiles1,CopyFiles2
+AddReg=AddRegistry
+CEShortcuts=CEShortcuts1
+CESetupDLL=Setup.DLL
+
