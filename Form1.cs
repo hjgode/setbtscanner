@@ -25,8 +25,24 @@ namespace setBTscanner
 
             log.WriteLog("+++++ START +++++");
         }
+
+        public Form1(string sBT)
+        {
+            InitializeComponent();
+
+            _sBT = sBT;
+
+            m_deleInfo = new EventHandler(loginfoCallback);
+
+            log = new logging(ref textBox1, m_deleInfo);
+
+            log.WriteLog("+++++ START +++++");
+        }
+
         BTdevice btdev;
         logging log;
+        string _sBT = "";
+
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
@@ -36,7 +52,12 @@ namespace setBTscanner
             Application.DoEvents();
 
             btdev = new BTdevice(ref log);
-            if (btdev.DoAssociation("0023686E70BC"))
+            if (_sBT.Length != 12)
+                _sBT = "0023686E70BC";
+
+            log.WriteLog("Using BT MAC: '" + _sBT + "'");
+
+            if (btdev.DoAssociation(_sBT))
                 log.WriteLog("Association OK");
             else
                 log.WriteLog("Association FAILED");

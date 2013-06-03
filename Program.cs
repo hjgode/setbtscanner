@@ -11,9 +11,19 @@ namespace setBTscanner
         /// The main entry point for the application.
         /// </summary>
         [MTAThread]
-        static void Main(string args)
+        static void Main(String[] args)
         {
-            Application.Run(new Form1());
+            if (args.Length == 2)
+            {
+                if (args[0].ToLower() == "-connect")
+                {
+                    string sBT = args[1];
+                    if (sBT.Length == 12)
+                        Application.Run(new Form1(sBT));
+                }
+            }
+            else
+                Application.Run(new Form1());
         }
     }
 }
