@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<PSWDM0C FormatVersion="1.0">
+   <UserInterface>
+      <Configuration name="PSWDM0C">
+         <FullScreen enabled="N"/>
+      </Configuration>
+   </UserInterface>
+   <DeviceTypes>
+      <DeviceType name="Printer">
+         <Filter name="Printer"/>
+         <Test>Printer test page\f</Test>
+      </DeviceType>
+      <DeviceType name="Scanner">
+         <Filter name="Scanner"/>
+         <BtPort>BtScanner1</BtPort>
+      </DeviceType>
+   </DeviceTypes>
+   <Filters>
+      <Filter name="Printer">
+         <Filter name="Printer6820"/>
+         <Filter name="PrinterPB20"/>
+         <Filter name="PrinterPB21"/>
+         <Filter name="PrinterPB22"/>
+         <Filter name="PrinterPB31"/>
+         <Filter name="PrinterPB32"/>
+         <Filter name="PrinterPB40"/>
+         <Filter name="PrinterPB41"/>
+         <Filter name="PrinterPB42"/>
+         <Filter name="PrinterPB50"/>
+         <Filter name="PrinterPK80"/>
+         <Filter name="PrinterPW40"/>
+         <Filter name="PrinterPW50"/>
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06"/>
+      </Filter>
+      <Filter name="Printer6820">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>6820</DeviceNameMatch>
+      </Filter>
+      <Filter name="PrinterPB20">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB20</DeviceNameMatch>
+      </Filter>
+      <Filter name="PrinterPB21">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB21</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="PrinterPB22">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB22</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="PrinterPB31">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB31</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="PrinterPB32">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB32</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="PrinterPB40">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB40</DeviceNameMatch>
+      </Filter>
+      <Filter name="PrinterPB41">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB41</DeviceNameMatch>
+      </Filter>
+      <Filter name="PrinterPB42">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB42</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="PrinterPB50">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PB50</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="PrinterPK80">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PK80</DeviceNameMatch>
+         <Configurable method="EZPrint"/>
+      </Filter>
+      <Filter name="PrinterPW40">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PW40</DeviceNameMatch>
+      </Filter>
+      <Filter name="PrinterPW50">
+         <ServiceClass major="0x04"/>
+         <DeviceClass major="0x06" minor="0x80"/>
+         <DeviceNameMatch>PW50</DeviceNameMatch>
+         <Configurable method="SmartSystem"/>
+      </Filter>
+      <Filter name="Scanner">
+         <Filter name="ScannerSF51"/>
+         <ServiceClass major="0x08"/>
+         <DeviceClass major="0x05"/>
+      </Filter>
+      <Filter name="ScannerSF51">
+         <ServiceClass major="0x08"/>
+         <DeviceClass major="0x05"/>
+         <DeviceNameMatch>SF51</DeviceNameMatch>
+      </Filter>
+   </Filters>
+</PSWDM0C>
