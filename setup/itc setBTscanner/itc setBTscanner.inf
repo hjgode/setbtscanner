@@ -11,8 +11,8 @@
 ;
 
 [SOURCE FILE]
-Name=setBTscanner.cab
-Path=D:\svn\git\setbtscanner\setup\setBTscanner.cab
+Name=itc setBTscanner.CAB
+Path=D:\svn\git\setbtscanner\setup\itc setBTscanner.CAB
 AllowUninstall=TRUE
 
 [Version]
@@ -33,14 +33,16 @@ BuildMax=0
 [SourceDisksNames]
 1=,Source1,,"Program Files\setBTscanner"
 2=,Source2,,"Windows"
-3=,Source3,,
+3=,Source3,,"Windows\Startup"
+4=,Source4,,
 
 [SourceDisksFiles]
 "Intermec.Communication.Bluetooth.DeviceUtility.CF3.5.dll"=1
 "pswdm0c.xml"=1
 "setBTscanner.exe"=1
 "KeyWedge.exe"=2
-"Setup.DLL"=3
+"setBTscanner.lnk"=3
+"Setup.DLL"=4
 
 [CopyFiles1]
 "Intermec.Communication.Bluetooth.DeviceUtility.CF3.5.dll",,,0x00000001
@@ -50,13 +52,17 @@ BuildMax=0
 [CopyFiles2]
 "KeyWedge.exe",,,0x00000001
 
+[CopyFiles3]
+"setBTscanner.lnk",,,0x00000001
+
 [CEShortcuts1]
 "setBTscanner.lnk",0,"setBTscanner.exe"
 
 [DestinationDirs]
 CopyFiles1=0,"%CE1%\setBTscanner"
 CopyFiles2=0,"%CE2%"
-CEShortcuts1=0,"%CE4%"
+CopyFiles3=0,"%CE4%"
+CEShortcuts1=0,"%CE11%"
 
 [AddRegistry]
 HKLM,"Software\Intermec\SSKeyWedge","comport",0x00000000,"COM6:"
@@ -72,7 +78,7 @@ HKLM,"Software\Intermec\SSKeyWedge","UseCharSend",0x00000000,"0"
 HKLM,"Software\Intermec\SSKeyWedge","sendcharbychar",0x00010001,1
 
 [DefaultInstall]
-CopyFiles=CopyFiles1,CopyFiles2
+CopyFiles=CopyFiles1,CopyFiles2,CopyFiles3
 AddReg=AddRegistry
 CEShortcuts=CEShortcuts1
 CESetupDLL=Setup.DLL

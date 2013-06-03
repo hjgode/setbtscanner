@@ -14,7 +14,9 @@ namespace setBTscanner
         private EventHandler m_deleInfo;
         const string sKeyWedgeFullName = @"\Windows\KeyWedge.exe";
         const string sKeyWedgeName = "KeyWedge.exe";
-        bool bAutoClose = true;
+        bool bAutoClose = false;
+        Timer timerClose;
+        Timer timerConnect;
 
         public setBTscanner()
         {
@@ -41,6 +43,17 @@ namespace setBTscanner
 
             log.WriteLog("+++++ START +++++");
             bAutoClose = true;
+            
+            timerConnect = new Timer();
+            timerConnect.Interval = 10000;
+            timerConnect.Tick += new EventHandler(timerConnect_Tick);
+            timerConnect.Enabled = true;
+
+        }
+
+        void timerConnect_Tick(object sender, EventArgs e)
+        {
+            timerConnect.Enabled = false;
             button1_Click(this, new EventArgs());
         }
 
@@ -81,7 +94,19 @@ namespace setBTscanner
             btnConnect.Enabled = true;
 
             if (bAutoClose)
-                this.Close();
+            {
+                timerClose = new Timer();
+                timerClose.Interval = 3000;
+                timerClose.Tick += new EventHandler(timerClose_Tick);
+                timerClose.Enabled = true;
+            }
+            Application.DoEvents();
+        }
+
+        void timerClose_Tick(object sender, EventArgs e)
+        {
+            timerClose.Enabled = false;
+            this.Close();
         }
         /// <summary>
         /// StartupCallback - Interthread delegate.
