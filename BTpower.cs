@@ -18,8 +18,12 @@ namespace setBTscanner
         }
         public void Dispose()
         {
-            SSAPI.Dispose();
-            SSAPI = null;
+            try
+            {
+                SSAPI.Dispose();
+                SSAPI = null;
+            }
+            catch (Exception) { }
         }
 
         public string XmlSetBluetoothPowerFormat
