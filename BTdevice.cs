@@ -48,6 +48,20 @@ namespace setBTscanner
             try
             {
                 preparePSWMD0C();
+                BTpower btPower = new BTpower();
+                if (btPower.IsBluetoothOn() == false)
+                {
+                    log.WriteLog("BT power is OFF, trying to switch ON...");
+                    btPower.TurnOnBluetooth();
+                    if (btPower.IsBluetoothOn() == false)
+                        log.WriteLog("BT power switch ON failed");
+                    else
+                        log.WriteLog("BT power is now ON");
+                }
+                else
+                    log.WriteLog("BT power was ON, no change");
+                btPower.Dispose();
+
                 _deviceUtility = new DeviceUtility();
                 _deviceUtility.Initialize(xmlFileName);
             }
