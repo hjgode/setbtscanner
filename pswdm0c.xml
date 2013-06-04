@@ -14,6 +14,6 @@
       <ClassOfDevice>080620</ClassOfDevice>
     </Device>
     <DefaultDevice name="RS507 12088000500400   (0023686e70bc)"/>
-    <BtPort>COM6:</BtPort>
+    <BtPort>COM9:</BtPort>
   </Devices>
 </PSWDM0C>

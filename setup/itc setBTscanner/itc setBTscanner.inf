@@ -65,7 +65,7 @@ CopyFiles3=0,"%CE4%"
 CEShortcuts1=0,"%CE11%"
 
 [AddRegistry]
-HKLM,"Software\Intermec\SSKeyWedge","comport",0x00000000,"COM6:"
+HKLM,"Software\Intermec\SSKeyWedge","comport",0x00000000,"COM9:"
 HKLM,"Software\Intermec\SSKeyWedge","parity",0x00010001,0
 HKLM,"Software\Intermec\SSKeyWedge","stopbits",0x00010001,0
 HKLM,"Software\Intermec\SSKeyWedge","databits",0x00010001,8

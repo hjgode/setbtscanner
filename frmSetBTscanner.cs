@@ -15,8 +15,11 @@ namespace setBTscanner
         const string sKeyWedgeFullName = @"\Windows\KeyWedge.exe";
         const string sKeyWedgeName = "KeyWedge.exe";
         bool bAutoClose = false;
-        Timer timerClose;
-        Timer timerConnect;
+
+        System.Threading.Thread threadConnect=null;
+        System.Threading.Thread threadCloseApp=null;
+        int delayConnect = 2000;
+        int delayAutoClose = 2000;
 
         public setBTscanner()
         {
@@ -43,40 +46,72 @@ namespace setBTscanner
 
             log.WriteLog("+++++ START +++++");
             bAutoClose = true;
-            
-            timerConnect = new Timer();
-            timerConnect.Interval = 10000;
-            timerConnect.Tick += new EventHandler(timerConnect_Tick);
-            timerConnect.Enabled = true;
 
+            threadConnect = new System.Threading.Thread(connectthread);
+            threadConnect.Start();
         }
 
-        void timerConnect_Tick(object sender, EventArgs e)
+        void connectthread()
         {
-            timerConnect.Enabled = false;
-            button1_Click(this, new EventArgs());
+            System.Diagnostics.Debug.WriteLine("+++ connectthread started");
+            object[] myArray = new object[1];
+            myArray[0]=false;
+            try
+            {
+                this.BeginInvoke(new ButtonDelegate(EnableButton), myArray);
+                System.Threading.Thread.Sleep(delayConnect);
+                doConnect();
+            }
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("### connectthread Exception: " + ex.Message);
+            }
+            myArray[0] = true;
+            this.BeginInvoke(new ButtonDelegate(EnableButton), myArray);
+            System.Diagnostics.Debug.WriteLine("--- connectthread ended");
+        }
+        
+        void closethread()
+        {
+            System.Diagnostics.Debug.WriteLine("closethread started");
+            try{
+                System.Threading.Thread.Sleep(delayAutoClose);
+                this.BeginInvoke(new InvokeDelegate(CloseMe));
+                //this.Close();
+            }
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine("### closethread Exception: " + ex.Message); 
+            }
+            System.Diagnostics.Debug.WriteLine("--- closethread ended");
+        }
+
+        public delegate void InvokeDelegate();
+        public void CloseMe()
+        {
+            this.Close();
+        }
+
+        public delegate void ButtonDelegate(bool bEnable);
+        public void EnableButton(bool bEnable)
+        {
+            if(bEnable)
+                Cursor.Current = Cursors.Default;
+            else
+                Cursor.Current = Cursors.WaitCursor;
+            btnConnect.Enabled = bEnable;
+            txtBTmacAddress.Enabled = bEnable;
         }
 
         BTdevice btdev;
         logging log;
         string _sBT = "";
 
-        private void button1_Click(object sender, EventArgs e)
+        void doConnect()
         {
-            btnConnect.Enabled = false;
-            if (txtBTmacAddress.Text.Length == 12)
-                _sBT = txtBTmacAddress.Text;
-
             killKeyWedge();
-            Cursor.Current = Cursors.WaitCursor;
             Application.DoEvents();
 
             btdev = new BTdevice(ref log);
-#if DEBUG
-            if (_sBT.Length != 12)
-                _sBT = "0023686E70BC";
-#endif
-            txtBTmacAddress.Text = _sBT;
+
             
             log.WriteLog("Using BT MAC: '" + _sBT + "'");
 
@@ -88,26 +123,36 @@ namespace setBTscanner
             btdev.Dispose();
             btdev = null;
 
-            Cursor.Current = Cursors.Default;
-            Application.DoEvents();
-            
-            btnConnect.Enabled = true;
-
             if (bAutoClose)
             {
-                timerClose = new Timer();
-                timerClose.Interval = 3000;
-                timerClose.Tick += new EventHandler(timerClose_Tick);
-                timerClose.Enabled = true;
+                threadCloseApp = new System.Threading.Thread(closethread);
+                threadCloseApp.Start();
             }
             Application.DoEvents();
         }
 
-        void timerClose_Tick(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            timerClose.Enabled = false;
-            this.Close();
+            btnConnect.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
+            Application.DoEvents();
+
+#if DEBUG
+            if (_sBT.Length != 12)
+                _sBT = "0023686E70BC";
+#endif
+            txtBTmacAddress.Text = _sBT;
+
+            if (txtBTmacAddress.Text.Length == 12)
+                _sBT = txtBTmacAddress.Text; 
+            doConnect();
+
+            btnConnect.Enabled = true;
+            Cursor.Current = Cursors.Default;
+            Application.DoEvents();
+
         }
+
         /// <summary>
         /// StartupCallback - Interthread delegate.
         /// </summary>
@@ -160,6 +205,11 @@ namespace setBTscanner
 
         private void Form1_Closing(object sender, CancelEventArgs e)
         {
+            if (threadCloseApp != null)
+                threadCloseApp.Abort();
+            if (threadConnect != null)
+                threadConnect.Abort();
+
             startKeyWedge();
             log.WriteLog("##### END #####");
         }
