@@ -39,16 +39,17 @@ Inside the program dir you will find a log file to verify the function.
 
 pswdm0c.cab has to be installed before using setBTscanner.   
 
-=Installation
+## Installation
 
-Put "itc setBTscanner.CAB" and "pswdm0c.cab" onto the device into folder "\Flash File Store\CabFiles\".
+Copy files onto device:
 
-Reboot the device
+- Put "itc setBTscanner.CAB" and "pswdm0c.cab" onto the device into folder "\Flash File Store\CabFiles\".
+- Reboot the device
 
 setBTscanner will be installed to \Program Files\setBTscanner. A lnk file will be placed into "\Windows\Start Menu\Programs\StartUp". 
 The lnk file already contains the arguments "-connect 0023686E70BC"
 
-   255#"\Program Files\setBTscanner\setBTscanner.exe" -connect 0023686E70BC
+    255#"\Program Files\setBTscanner\setBTscanner.exe" -connect 0023686E70BC
    
 You have to edit this lnk file, if you want setBTscanner to connect automatically to a different device.
 
@@ -67,7 +68,7 @@ Keywedge will be installed with the following settings.
 	HKLM,"Software\Intermec\SSKeyWedge","UseCharSend",0x00000000,"0"
 	HKLM,"Software\Intermec\SSKeyWedge","sendcharbychar",0x00010001,1
 
-setBTscanner association is not saved in the registry. The connection is only valid until a reboot. 
+The setBTscanner communcations port association is not saved in the registry. The connection is only valid until a reboot. 
 Therefor setBTscanner will be launched by the lnk file in the StartUp folder on every reboot of the device.
 
 If you need to change the default COMx port you have to edit pswdm0c.xml (BtPort) and the registry (comport).

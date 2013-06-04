@@ -1,0 +1,15 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Intermec\SSKeyWedge]
+"comport"="COM6:"
+"parity"=dword:00000000
+"stopbits"=dword:00000000
+"databits"=dword:00000008
+"handshake"=dword:00000003
+"baudrate"=dword:00002580
+"BeepAfterRead"=dword:00000001
+"Preamble"=""
+"Postamble"=""
+"UseCharSend"="0"
+"sendcharbychar"=dword:00000001
+
