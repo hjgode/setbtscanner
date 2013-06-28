@@ -1,4 +1,5 @@
-﻿using System;
+﻿#undef USE_SSAPI
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -48,6 +49,7 @@ namespace setBTscanner
             try
             {
                 preparePSWMD0C();
+#if USE_SSAPI 
                 BTpower btPower = new BTpower();
                 if (btPower.IsBluetoothOn() == false)
                 {
@@ -60,8 +62,9 @@ namespace setBTscanner
                 }
                 else
                     log.WriteLog("BT power was ON, no change");
-                btPower.Dispose();
-
+                
+                //btPower.Dispose();
+#endif
                 _deviceUtility = new DeviceUtility();
                 _deviceUtility.Initialize(xmlFileName);
             }

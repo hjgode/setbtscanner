@@ -89,7 +89,6 @@ namespace setBTscanner
             return (this.GetSSAPIValue(this.XmlSetBluetoothPowerFormat, "Bluetooth power") == "On");
         }
 
-
         public void TurnOnBluetooth()
         {
             string xmlSet = string.Format(this.XmlSetBluetoothPowerFormat, "On");
